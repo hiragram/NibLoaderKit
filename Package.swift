@@ -5,24 +5,24 @@ import PackageDescription
 
 var excludes: [String] = []
 #if !os(iOS)
-excludes.append("iOS")
+excludes.append("iOS/")
 #endif
 #if !os(macOS)
-excludes.append("macOS")
+excludes.append("macOS/")
 #endif
 #if !os(tvOS)
-excludes.append("tvOS")
+excludes.append("tvOS/")
 #endif
 
 var testExcludes: [String] = []
 #if !os(iOS)
-testExcludes += ["iOS", "Fixtures/iOS"]
+testExcludes += ["iOS/", "Fixtures/iOS/"]
 #endif
 #if !os(macOS)
-textExcludes += ["macOS", "Fixtures/macOS"]
+textExcludes += ["macOS/", "Fixtures/macOS/"]
 #endif
 #if !os(tvOS)
-testExcludes += ["tvOS", "Fixtures/tvOS"]
+testExcludes += ["tvOS/", "Fixtures/tvOS/"]
 #endif
 
 let package = Package(
