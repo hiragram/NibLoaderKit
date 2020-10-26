@@ -4,11 +4,19 @@
 import PackageDescription
 
 #if os(iOS)
-let excludes: [String] = ["macOS", "Fixtures/macOS", "Fixtures/tvOS"]
+let excludes: [String] = ["macOS"]
 #elseif os(macOS)
-let excludes: [String] = ["iOS", "Fixtures/iOS", "Fixtures/tvOS"]
+let excludes: [String] = ["iOS"]
 #elseif os(tvOS)
-let excludes: [String] = ["iOS", "macOS", "Fixtures/iOS", "Fixtures/macOS"]
+let excludes: [String] = ["iOS", "macOS"]
+#endif
+
+#if os(iOS)
+let testExcludes: [String] = ["macOS", "Fixtures/macOS", "Fixtures/tvOS"]
+#elseif os(macOS)
+let testExcludes: [String] = ["iOS", "Fixtures/iOS", "Fixtures/tvOS"]
+#elseif os(tvOS)
+let testExcludes: [String] = ["iOS", "macOS", "Fixtures/iOS", "Fixtures/macOS"]
 #endif
 
 let package = Package(
@@ -29,13 +37,14 @@ let package = Package(
         .target(
             name: "NibLoaderKit",
             dependencies: [],
-            path: "Sources"
+            path: "Sources",
+            exclude: excludes
         ),
         .testTarget(
             name: "NibLoaderKitTests",
             dependencies: ["NibLoaderKit"],
             path: "Tests/NibLoaderKit",
-            exclude: excludes
+            exclude: testExcludes
         ),
     ]
 )
